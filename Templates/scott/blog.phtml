@@ -1,0 +1,23 @@
+<div class="container">
+   <h3>Blog</h3>
+   
+   <!-- foreach ceil(count($posts)/POSTS_PER_ROW) -->
+   <? foreach(range(0, ceil(count($posts) / 3) - 1) as $rowNum) : ?>
+   <div class="row">
+      <!-- foreach POSTS_PER_ROW -->
+      <? foreach (range(0,2) as $postNum) : ?>
+         <? if (($index = ($rowNum * 3) + $postNum) < count($posts)) : ?>
+         <div class="col-md-4">
+            <a href="<?= $posts[$index]['id'] ?>">
+               <img class="img-thumbnail" src="<?= $posts[$index]['leader'] ?: '' ?>">
+               <div class="center-block">
+                  <p><?= $posts[$index]['title'] ?></p>
+               </div>
+            </a>
+         </div>
+         <? endif ?>
+      <? endforeach ?>
+   </div>
+   <? endforeach ?>
+
+</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <title><?= $title ?></title>
+      <!-- jQuery is the holy grail -->
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+
+      <!-- Masonry -->
+      <script src="//masonry.desandro.com/masonry.pkgd.min.js"></script>
+
+      <!-- FontAwesome -->
+      <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+      <!-- Latest compiled and minified CSS -->
+      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- jQuery NoteBook -->
+      <link rel="stylesheet" type="text/css" href="/3P/notebook/src/js/jquery.notebook.css">
+      <script type="text/javascript" src="/3P/notebook/src/js/jquery.notebook.js"></script>
+   
+      <!-- Medium.js -->
+      <link rel="stylesheet" type="text/css" href="/3P/medium/medium.css">
+      <script type="text/javascript" src="/3P/medium/medium.js"></script>
+
+      <!-- jwysiwyg -->
+      <!-- script type="text/javascript" src="/3P/jwysiwyg/jquery.wysiwyg.js" -->
+
+      <!-- And the pages scripts -->
+      <? foreach($scripts as $script) : ?>
+         <script src="<?= $script ?>"></script>
+      <? endforeach ?>
+
+      <!-- And the pages styles -->
+      <? foreach($styles as $css) : ?>
+         <link rel="stylesheet" type="text/css" href="<?= $css ?>">
+      <? endforeach ?>
+   
+      <!-- JS App data -->
+      <script type="text/javascript">
+         var App = <?= $jsdata ?>;
+      </script>
+
+   </head>
+   <body>
+      <div class="container">
+         <h3>navbar</h3>
+         <ul>  
+         <? foreach($navLinks as $tag => $uri): ?>
+            <li><a href="<?= $uri ?>"><?= $tag ?></a></li>
+         <? endforeach ?>
+         </ul>
+         <p><?= $user ? $user->userid : 'Not logged in.'  ?></p>
+      </div>
+      <hr>

@@ -1,0 +1,15 @@
+<div class="container">
+   <div id="postHeader">
+      <h1>
+         <?= $post->title ?>
+         <? if ($user) : ?>
+            <a href="/edit/<?= $post->id ?>">
+               <i class="fa fa-pencil"></i>
+            </a>
+         <? endif ?>
+      </h1>
+   </div>
+   <div class="postBody">
+      <?= $post->body ?>
+   </div>
+</div>

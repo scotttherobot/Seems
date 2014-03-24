@@ -1,0 +1,11 @@
+#postHeader {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   font-size: 2em;
+   min-height: 20px;
+}
+
+.postBody {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+   min-height: 100px;
+}
+

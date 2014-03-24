@@ -1,0 +1,7 @@
+{
+   "require": {
+      "slim/slim": "2.*",
+      "davidpersson/beanstalk": "*.*",
+      "knplabs/gaufrette": "0.1.*"
+   }
+}
