@@ -42,6 +42,11 @@ class Content {
       $this->$attr = $value;
    }
 
+   public function getRendered() {
+      $parsedown = new Parsedown();
+      return $parsedown->parse($this->body);
+   }
+
    public function save() {
       // We're creating a new post
       if (!$this->id) {

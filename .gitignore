@@ -1,3 +1,5 @@
 vendor
 media
 composer.lock
+.AppleDouble
+*.swp

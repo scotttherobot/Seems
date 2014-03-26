@@ -1,0 +1,99 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600);
+
+.hide {
+   display: none;
+}
+
+body {
+   border-top: 10px solid #FF0080;
+   margin: 0 0 50px 0;
+   padding: 0;
+   font-family: 'Open Sans', sans-serif;
+   font-size: 20px;
+   color: #555;
+}
+
+strong {
+   color: #FF0080;
+   font-weight: 600;
+}
+
+header .content {
+   text-align: center;
+}
+footer .content {
+   text-align: center;
+   padding-top: 20px;
+}
+
+.row {
+   padding: 0 20px;
+}
+
+.container {
+   max-width: 960px;
+   margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   color: #FF0080;
+   font-weight: 300;
+   text-align: center;
+}
+
+.meta {
+   border-top: 1px solid #555;
+   border-bottom: 1px solid #555;
+   font-family: Georgia, Times, serif;
+   list-style: none;
+   margin: 0;
+   padding: 0;
+   text-align: center;
+}
+
+.meta li {
+   margin-top: 8px;
+   margin-bottom: 8px;
+   margin-right: 0px;
+   margin-left: 0px;
+   padding: 0px;
+}
+
+.buttonBar {
+   border: 1px solid #999;
+   border-bottom: 0px;
+   list-style: none;
+   padding: 5px;
+   margin: 0;
+}
+.buttonBar li {
+   display: inline;
+   padding: 0;
+}
+.buttonBar li:hover {
+   color: #4EA3D0;
+}
+
+blockquote {
+   background: #f8f9f9;
+   border-left: 4px solid #ccc;
+   padding: 6px 30px;
+   margin: 0;
+}
+a {
+   color: #4ea3d0;
+   text-decoration: none;
+}
+a:visited {
+   color: #4ea3d0;
+}
+
+p {
+   font-weight: 400;
+   line-height: 1.4em;
+}
+
+.CodeMirror {
+   font-size: 15px;
+   border: 1px solid #999;
+}

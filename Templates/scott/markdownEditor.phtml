@@ -1,0 +1,23 @@
+<div class="container">
+   <div class="row">
+      <header class="content">
+         <h1><?= $post->title ?></h1>
+         <ul class="meta">
+            <li>Markdown Editor</li>
+         </ul>
+      </header>
+      <br>
+      <div class="content">
+         <ul class="buttonBar">
+            <li id="undoButton"><i class="fa fa-reply"></i></li>
+            <li id="redoButton"><i class="fa fa-share"></i></li>
+            <li id="insertPhotoButton"><i class="fa fa-picture-o"></i></li>
+         </ul>
+
+         <textarea name="body" id="bodyInput" cols="100" rows="20"><?= $post->body ?></textarea>
+         <br>
+         <button id="saveButton">save</button>
+
+      </div>
+   </div>
+</div>

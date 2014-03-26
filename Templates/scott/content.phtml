@@ -1,15 +1,18 @@
 <div class="container">
-   <div id="postHeader">
-      <h1>
-         <?= $post->title ?>
-         <? if ($user) : ?>
-            <a href="/edit/<?= $post->id ?>">
-               <i class="fa fa-pencil"></i>
-            </a>
-         <? endif ?>
-      </h1>
-   </div>
-   <div class="postBody">
-      <?= $post->body ?>
+   <div class="row">
+      <header class="content">
+         <h1><?= $post->title ?></h1>
+         <ul class="meta">
+            <li><?= date("F jS, Y", $post->date) ?></li>
+         </ul>
+      </header>
+      <div class="content">
+         <?= $post->getRendered() ?>
+      </div>
+      <? if ($user) : ?>
+         <ul class="meta">
+            <li><a href="/edit/<?= $post->id ?>"><i class="fa fa-pencil"></i></a></li>
+         </ul>
+      <? endif ?>
    </div>
 </div>

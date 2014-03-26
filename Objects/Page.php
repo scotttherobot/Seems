@@ -12,7 +12,9 @@ class Page {
    public $userid;
    public $titlePrefix = 'Scott Vanderlind';
    public $title = false;
-   public $style = [];
+   public $style = [
+      '/Templates/scott/CSS/global.css',
+   ];
    public $scripts = [];
    public $theme = 'scott';
    public $data = [];
@@ -59,8 +61,16 @@ class Page {
       $this->style[] = "/Templates/$this->theme/CSS/$stylesheet";
    }
 
+   public function addRemoteStyle($script) {
+      $this->style[] = $script;
+   }
+
    public function addScript($script) {
       $this->scripts[] = "/Templates/$this->theme/JS/$script";
+   }
+
+   public function addRemoteScript($script) {
+      $this->scripts[] = $script;
    }
 
    public function render($return = false) {
