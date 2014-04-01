@@ -50,11 +50,13 @@ $(function() {
 
    if (App.post) {
       $("#saveButton").click(function() {
+         var titleString = $.trim($("#postTitle").text());
          var bodyString = $.trim(editor.getValue());
          var leaderMedid = $.trim($("#leaderImage").attr('data-medid'));
          var publishedChecked = $("#publishedCheckbox").is(':checked') ? 1 : 0;
          var data = { 
-            body : bodyString
+            title : titleString
+            , body : bodyString
             , leader: leaderMedid
             , published: publishedChecked
          };
@@ -62,7 +64,7 @@ $(function() {
       });
    } else {
       $("#saveButton").click(function() {
-         var titleString = $.trim('');
+         var titleString = $.trim($("#postTitle").text());
          var bodyString = $.trim(editor.getValue());
          var leaderMedid = $.trim($("#leaderImage").attr('data-medid'));
          var publishedChecked = $("#publishedCheckbox").is(':checked') ? 1 : 0;
@@ -80,6 +82,11 @@ $(function() {
          $("#leaderImage").attr('data-medid', response.medid);
          $("#leaderImage").attr('src', response.src);
       });
+   });
+
+   $("#postTitle").click(function() {
+      var title = prompt("Title", $("#postTitle").text());
+      $("#postTitle").text(title);
    });
 
 });

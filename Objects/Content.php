@@ -14,7 +14,7 @@ class Content {
       
    public $userid;
 
-   public static function all() {
+   public static function all ($offset = 0, $limit = 5) {
       return DB::query('
          SELECT c.id, c.date, c.type, c.published,
           c.title, c.body, m.src as leader, u.username
@@ -23,7 +23,10 @@ class Content {
          ON m.medid = c.leader
          JOIN users u
          ON u.userid = c.userid
-         WHERE published = 1');
+         WHERE published = 1
+         ORDER BY id DESC
+         LIMIT %i
+         OFFSET %i', $limit, $offset);
    }
 
    public function __construct($user, $id = false) {

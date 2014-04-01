@@ -1,9 +1,14 @@
 <div class="container">
    <div class="row">
       <header class="content">
-         <h1><?= $post->title ?></h1>
+         <h1 id="postTitle"><?= $post->title ?: 'Click to title...' ?></h1>
          <div class="post">
-            <span id="changeLeaderButton"><i class="fa fa-picture-o"></i></span>
+            <span>
+               <a id="changeLeaderButton"><i class="fa fa-picture-o"></i></a>
+               <? if ($post->id) : ?>
+                  <a href="/blog/<?= $post->id ?>"><i class="fa fa-eye"></i></a>
+               <? endif ?>
+            </span>
             <img data-medid="<?= $post->leader ?>" src="<?= MediaManager::URI($post->leader) ?>" id="leaderImage">
          </div>
       </header>

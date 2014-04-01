@@ -3,9 +3,28 @@
 $app->get(URI::tag('BLOG'), function() use ($app) {
    $page = new Page($app);
 
-   $posts = Content::all();
+   // Anticipage human-readable page numbers
+   $pageno = idx($_GET, 'p', 1);
+   // Make sure we don't go negative.
+   if ($pageno < 1)
+      $pageno = 1;
 
-   $page->addData(['posts' => $posts]);
+   // Magic number, 5 posts-per-page
+   $offset = ($pageno - 1) * 5;
+
+   $posts = Content::all($offset);
+
+   // If we have no posts, go back a page?
+   if (count($posts) == 0 && $pageno != 1) {
+      $app->redirect("/blog?p=" . ($pageno - 1));
+   }
+
+   $page->addData([
+      'posts' => $posts,
+      // Pagination links
+      'nextPage' => count($posts) < 5 ? false : $pageno + 1,
+      'previousPage' => $pageno - 1 ?: false,
+   ]);
    $page->addTemplate('blog.phtml');
    $page->setTitle("Blog");
 
@@ -39,6 +58,8 @@ $app->get(URI::tag('CREATE'), function() use ($app) {
    $page->addScript('markdownEditor.js');
    // And add the media manager
    $page->addTemplate('mediaManager.phtml');
+   $page->addRemoteScript('/3P/reveal/jquery.reveal.js');
+   $page->addRemoteStyle('/3P/reveal/reveal.css');
    $page->addScript("mediaManager.js");
    $page->addStyle("mediaManager.css");
 
