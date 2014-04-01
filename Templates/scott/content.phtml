@@ -2,6 +2,12 @@
    <div class="row">
       <header class="content">
          <h1><?= $post->title ?></h1>
+         <div class="post">
+            <? if ($user) : ?>
+            <span><a href="/edit/<?= $post->id ?>"><i class="fa fa-pencil"></i></a></span>
+            <? endif ?>
+            <img src="<?= MediaManager::URI($post->leader) ?>">
+         </div>
          <ul class="meta">
             <li><?= date("F jS, Y", $post->date) ?></li>
          </ul>
@@ -9,10 +15,5 @@
       <div class="content">
          <?= $post->getRendered() ?>
       </div>
-      <? if ($user) : ?>
-         <ul class="meta">
-            <li><a href="/edit/<?= $post->id ?>"><i class="fa fa-pencil"></i></a></li>
-         </ul>
-      <? endif ?>
    </div>
 </div>

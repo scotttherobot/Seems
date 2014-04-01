@@ -29,15 +29,18 @@ $app->get(URI::tag('CREATE'), function() use ($app) {
    $page = new Page($app);
    $page->setTitle("Edit");
 
-   $post = false;
+   $post = new Content($page->user);
    $page->addData(['post' => $post]);
    // Add the post editor
-   $page->addTemplate('edit.phtml');
-   $page->addScript("edit.js");
-   $page->addStyle("edit.css");
+   $page->addRemoteScript('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.min.js');
+   $page->addRemoteScript('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/markdown/markdown.min.js');
+   $page->addRemoteStyle('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.css');
+   $page->addTemplate('markdownEditor.phtml');
+   $page->addScript('markdownEditor.js');
    // And add the media manager
    $page->addTemplate('mediaManager.phtml');
    $page->addScript("mediaManager.js");
+   $page->addStyle("mediaManager.css");
 
    $page->render();
 });
@@ -53,21 +56,18 @@ $app->get(URI::tag('EDIT') . ":id", function($id) use ($app) {
    $page->addJSData(['post' => $post]);
 
    // Add the post editor
-   if (isset($_GET['medium'])) {
-      $page->addTemplate('edit.phtml');
-      $page->addScript("edit.js");
-      $page->addStyle("edit.css");
-   } else {
-      $page->addRemoteScript('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.min.js');
-      $page->addRemoteScript('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/markdown/markdown.min.js');
-      $page->addRemoteStyle('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.css');
-      $page->addTemplate('markdownEditor.phtml');
-      $page->addScript('markdownEditor.js');
-   }
+   $page->addRemoteScript('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.min.js');
+   $page->addRemoteScript('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/mode/markdown/markdown.min.js');
+   $page->addRemoteStyle('//cdnjs.cloudflare.com/ajax/libs/codemirror/4.0.3/codemirror.css');
+   $page->addTemplate('markdownEditor.phtml');
+   $page->addScript('markdownEditor.js');
 
    // And add the media manager
    $page->addTemplate('mediaManager.phtml');
+   $page->addRemoteScript('/3P/reveal/jquery.reveal.js');
+   $page->addRemoteStyle('/3P/reveal/reveal.css');
    $page->addScript("mediaManager.js");
+   $page->addStyle("mediaManager.css");
 
    $page->render();
 });

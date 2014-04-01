@@ -11,6 +11,15 @@ class MediaManager {
    private $filesystem;
    public $userid;
 
+   public static function URI($medid) {
+      $src = DB::queryFirstField('
+         SELECT src
+         FROM media
+         WHERE medid = %i', $medid);
+      // TODO: return alt image if there isn't one
+      return $src;
+   }
+
    function __construct($userid) {
       $this->userid = $userid;
       $this->adapter = new LocalAdapter(static::$uploadDir);

@@ -2,9 +2,10 @@
    <div class="row">
       <header class="content">
          <h1><?= $post->title ?></h1>
-         <ul class="meta">
-            <li>Markdown Editor</li>
-         </ul>
+         <div class="post">
+            <span id="changeLeaderButton"><i class="fa fa-picture-o"></i></span>
+            <img data-medid="<?= $post->leader ?>" src="<?= MediaManager::URI($post->leader) ?>" id="leaderImage">
+         </div>
       </header>
       <br>
       <div class="content">
@@ -16,6 +17,7 @@
 
          <textarea name="body" id="bodyInput" cols="100" rows="20"><?= $post->body ?></textarea>
          <br>
+         <input type="checkbox" id="publishedCheckbox" <?= $post->published ? 'checked' : '' ?>>
          <button id="saveButton">save</button>
 
       </div>

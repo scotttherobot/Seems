@@ -28,7 +28,7 @@ $app->get('/media/:medid/', function ($medid) {
    $res = new APIResponse(['user']);
    $media = new MediaManager($res->userid);
 
-   $res->addData(['meta' => $media->meta($medid)]);
+   $res->addData($media->meta($medid), "No such image!");
 
    $res->respond();
    

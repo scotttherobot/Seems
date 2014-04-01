@@ -35,6 +35,10 @@ footer .content {
    margin: 0 auto;
 }
 
+.container img {
+   width: 100%;
+}
+
 h1, h2, h3, h4, h5, h6 {
    color: #FF0080;
    font-weight: 300;

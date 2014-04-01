@@ -1,11 +1,13 @@
-<div class="container">
+<div class="reveal-modal mediaManager" id="mediaModal">
+   <a class="close-reveal-modal">&#215;</a>
    <h4>Media Manager</h4>
-   <div class="container">
-      <div class="" id="mediaList">
-         <div id="mediaTemplate" class="hide mediaItem">
-            <img width="200px" id="thumbnail" class="img-thumbnail" src="">
-            <span class="clearfix hide" id="name">Image Name</span>
-         </div>
+   <div id="toolbar">
+      <input type="file" id="uploadFile" name="image" class="hide">
+      <a><i class="fa fa-cloud-upload" id="uploadButton"></i></a>
+   </div>
+   <div id="mediaGrid">
+      <div id="mediaTemplate" class="imageFrame">
+         <img src="http://scott.soysauce.land/media/1_531fc98066d32_IMG_0100.jpg" id="thumbnail">
       </div>
    </div>
 </div>

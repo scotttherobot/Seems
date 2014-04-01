@@ -1,0 +1,3 @@
+[submodule "3P/reveal"]
+	path = 3P/reveal
+	url = git@github.com:zurb/reveal.git
