@@ -1,9 +1,0 @@
-[submodule "3P/notebook"]
-	path = 3P/notebook
-	url = git@github.com:raphaelcruzeiro/jquery-notebook.git
-[submodule "3P/jwysiwyg"]
-	path = 3P/jwysiwyg
-	url = git@github.com:akzhan/jwysiwyg.git
-[submodule "3P/medium"]
-	path = 3P/medium
-	url = git@github.com:jakiestfu/Medium.js.git

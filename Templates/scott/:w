@@ -1,7 +1,0 @@
-<div class="container">
-   <h2>Post Editor</h2>
-   <textarea class="form-control" rows="10"></textarea>
-   <hr>
-   <button type="button" class="btn btn-success pull-right">Save</button>
-</div>
-<hr>

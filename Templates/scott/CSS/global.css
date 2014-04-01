@@ -80,12 +80,19 @@ blockquote {
    padding: 6px 30px;
    margin: 0;
 }
+
 a {
    color: #4ea3d0;
    text-decoration: none;
+   transition: color .25s ease-in-out;
+   -moz-transition: color .25s ease-in-out;
+   -webkit-transition: color .25s ease-in-out;
 }
 a:visited {
    color: #4ea3d0;
+}
+a:hover {
+   color: #FF0080;
 }
 
 p {
@@ -96,4 +103,28 @@ p {
 .CodeMirror {
    font-size: 15px;
    border: 1px solid #999;
+}
+
+.post {
+   max-height: 300px;
+   min-height: 100px;
+   overflow: hidden;
+   margin-bottom: 20px;
+}
+.post span {
+   position: absolute;
+   padding: 10px;
+   font-size: 2em;
+   background-color: white;
+   opacity: .5;
+   transition: opacity .25s ease-in-out;
+   -moz-transition: opacity .25s ease-in-out;
+   -webkit-transition: opacity .25s ease-in-out;
+}
+.post:hover span {
+   opacity: .9;
+}
+.post img {
+   margin-top: -100px;
+   width: 100%;
 }
