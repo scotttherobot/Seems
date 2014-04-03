@@ -3,6 +3,7 @@
       "slim/slim": "2.*",
       "davidpersson/beanstalk": "*.*",
       "knplabs/gaufrette": "0.1.*",
-      "erusev/parsedown": "0.9.4"
+      "erusev/parsedown": "0.9.4",
+      "sergeytsalkov/meekrodb": "*"
    }
 }
