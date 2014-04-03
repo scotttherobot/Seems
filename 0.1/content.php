@@ -27,6 +27,8 @@ $app->post("/content/", function () {
    $res = new APIResponse(['user']);
    $content = new Content($res->userid);
 
+   $param = $res->params($_POST, ['title', 'leader']);
+
    foreach ($_POST as $attr => $val) {
       $content->update($attr, $val);
    }

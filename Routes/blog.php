@@ -28,13 +28,21 @@ $app->get(URI::tag('BLOG'), function() use ($app) {
    $page->addTemplate('blog.phtml');
    $page->setTitle("Blog");
 
+   $page->enableNav();
+
    $page->render();
 });
 
 $app->get(URI::tag('BLOG') . ":id/", function($id) use ($app) {
    $page = new Page($app);
+   $page->enableNav();
 
    $post = new Content($page->userid, $id);
+
+   if (!$post->author) {
+      $app->notFound();
+      //$page->error("No such post!", true);
+   }
 
    $page->addData(['post' => $post]);
    $page->addStyle("content.css");
@@ -44,9 +52,25 @@ $app->get(URI::tag('BLOG') . ":id/", function($id) use ($app) {
    $page->render();
 });
 
+$app->get(URI::tag('ABOUT'), function() use ($app) {
+   $page = new Page($app);
+
+   $post = new Content($page->userid, 1);
+
+   $page->addData(['post' => $post]);
+   $page->addStyle("content.css");
+   $page->addTemplate('content.phtml');
+   $page->setTitle($post->title);
+   $page->enableNav();
+
+   $page->render();
+
+});
+
 $app->get(URI::tag('CREATE'), function() use ($app) {
    $page = new Page($app, ['user']);
    $page->setTitle("Edit");
+   $page->enableNav();
 
    $post = new Content($page->user);
    $page->addData(['post' => $post]);
@@ -69,8 +93,12 @@ $app->get(URI::tag('CREATE'), function() use ($app) {
 $app->get(URI::tag('EDIT') . ":id", function($id) use ($app) {
    $page = new Page($app, ['user']);
    $page->setTitle("Edit");
+   $page->enableNav();
 
    $post = new Content($page->userid, $id);
+   if (!$post->author) {
+      $page->error("No such post!", true);
+   }
    // Add the post data to the page
    $page->addData(['post' => $post]);
    // Add the post id to the App variable for JS

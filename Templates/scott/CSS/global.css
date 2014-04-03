@@ -1,5 +1,9 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600);
 
+.centered {
+   text-align: center;
+}
+
 .hide {
    display: none;
 }
@@ -11,11 +15,16 @@ body {
    font-family: 'Open Sans', sans-serif;
    font-size: 20px;
    color: #555;
+   background-color: #F5F5F5;
 }
 
 strong {
    color: #FF0080;
    font-weight: 600;
+}
+
+.content {
+   clear: both;
 }
 
 header .content {
@@ -43,6 +52,7 @@ h1, h2, h3, h4, h5, h6 {
    color: #FF0080;
    font-weight: 300;
    text-align: center;
+   clear: both;
 }
 
 .meta {

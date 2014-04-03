@@ -1,0 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:100|Raleway+Dots);
+
+.leader {
+   font-family: 'Raleway Dots', sans-serif;
+}
+.leader h1 {
+   color: black;
+   font-size: 4em;
+}
+.outline {
+   margin: 0px auto;
+   max-width: 200px;
+}

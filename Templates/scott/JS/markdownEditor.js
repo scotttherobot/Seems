@@ -8,7 +8,6 @@ $(function() {
    editor.setSize(null, 500);
 
    var updatePost = function (data) {
-      console.log(data);
       $.post('/0.1/content/' + App.post.id, data, function (response) {
          console.log(response);
          if (response.errors.length) {
@@ -20,7 +19,6 @@ $(function() {
    };
 
    var createPost = function (data) {
-      console.log(data);
       $.post('/0.1/content/', data, function (response) {
          console.log(response);
          if (response.errors.length) {

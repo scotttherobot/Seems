@@ -1,0 +1,16 @@
+.navigation {
+   position: absolute;
+   margin-top: 10px;
+   background-color: #555;
+   opacity: .5;
+   max-width: 100px;
+}
+.navigation ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 10px;
+}
+.navigation li {
+   margin: 0;
+   padding: 0;
+}

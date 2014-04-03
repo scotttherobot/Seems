@@ -53,10 +53,19 @@ class Page {
          }
       }
       if (!$auth) {
+         self::$app->notFound();
+         /*
          $groups = implode(" or ", $allowed);
          $this->error("Unauthorized. You must be a $groups to use this page.", true);
+          */
       }
 
+   }
+
+   public function enableNav() {
+      $this->templates['header'][] = 'navigation.phtml';
+      $this->addScript('navigation.js');
+      $this->addStyle('navigation.css');
    }
 
    public function addTemplate($template) {

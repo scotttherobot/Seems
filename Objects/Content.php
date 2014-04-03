@@ -4,7 +4,7 @@ class Content {
 
    public $id = false;
    public $row = [];
-   public $author;
+   public $author = false;
    public $type = 'POST';
    public $title;
    public $leader = NULL;
@@ -91,7 +91,7 @@ class Content {
          // If we have the data, update it, else leave it as
          // the previous value
          $this->id = idx($post, 'id', $this->id);
-         $this->author = idx($post, 'author', $this->author);
+         $this->author = idx($post, 'userid', $this->author);
          $this->type = idx($post, 'type', $this->type);
          $this->date = idx($post, 'date', $this->date);
          $this->body = idx($post, 'body', $this->body);

@@ -4,6 +4,7 @@ $app->get(URI::tag('HOME'), function() use ($app) {
    $page = new Page($app);
 
    $page->addTemplate('home.phtml');
+   $page->addStyle('home.css');
    $page->setTitle("Home");
 
    $page->render();

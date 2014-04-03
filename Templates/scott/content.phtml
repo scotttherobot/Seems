@@ -6,7 +6,9 @@
             <? if ($user) : ?>
             <span><a href="/edit/<?= $post->id ?>"><i class="fa fa-pencil"></i></a></span>
             <? endif ?>
+            <? if ($post->leader) : ?>
             <img src="<?= MediaManager::URI($post->leader) ?>">
+            <? endif ?>
          </div>
          <ul class="meta">
             <li><?= date("F jS, Y", $post->date) ?></li>
