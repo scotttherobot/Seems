@@ -27,7 +27,14 @@ class Page {
       'footer' => [],
    ];
 
-   public function __construct($app, $user = false) {
+   // Permission levels
+   private $permissions = [
+      'user' => [
+         'User','auth',
+      ],
+   ];
+
+   public function __construct($app, $allowed = ['public'], $user = false) {
       static::$app = $app;
 
       // If a user was passed in, let's use that for the context of the page.
@@ -35,6 +42,21 @@ class Page {
       $this->user = $user ?: User::auth();
       if ($this->user)
          $this->userid = $this->user->userid;
+
+      // Now check page permission level.
+      $auth = false;
+      $auth = $auth || in_array('public', $allowed);
+      if (!$auth && $this->user) {
+         foreach ($allowed as $type) {
+            $auth = $auth ||
+               forward_static_call_array($this->permissions[$type], [$this->user->userid]);
+         }
+      }
+      if (!$auth) {
+         $groups = implode(" or ", $allowed);
+         $this->error("Unauthorized. You must be a $groups to use this page.", true);
+      }
+
    }
 
    public function addTemplate($template) {

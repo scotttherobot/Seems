@@ -45,7 +45,7 @@ $app->get(URI::tag('BLOG') . ":id/", function($id) use ($app) {
 });
 
 $app->get(URI::tag('CREATE'), function() use ($app) {
-   $page = new Page($app);
+   $page = new Page($app, ['user']);
    $page->setTitle("Edit");
 
    $post = new Content($page->user);
@@ -67,7 +67,7 @@ $app->get(URI::tag('CREATE'), function() use ($app) {
 });
 
 $app->get(URI::tag('EDIT') . ":id", function($id) use ($app) {
-   $page = new Page($app);
+   $page = new Page($app, ['user']);
    $page->setTitle("Edit");
 
    $post = new Content($page->userid, $id);

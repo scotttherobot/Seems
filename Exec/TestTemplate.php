@@ -9,9 +9,22 @@ foreach (glob("../Objects/*.php") as $filename) {
 }
 
 
-DB::$user = 'root';
-DB::$password = 'anncoulter';
-DB::$dbName = 'chat';
-DB::$host = 'localhost';
+$tags = URI::navLinks();
 
-print_r(DB::query("select * from subscriptions"));
+foreach ($tags as $tag => $route) {
+   $file = <<<EOT
+<?php
+
+\$app->get(URI::tag("$tag"), function () use (\$app) {
+   \$app->redirect('/404/');
+});
+
+\$app->post(URI::tag("$tag"), function () use (\$app) {
+   \$app->redirect('/404/');
+});
+EOT;
+
+   print($file);
+   print("\n");
+
+}
