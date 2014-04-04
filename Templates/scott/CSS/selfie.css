@@ -1,0 +1,8 @@
+.camera {
+   width: 800px !important;
+   height: 600px;
+   margin: 0px auto;
+}
+.shutter {
+   font-size: 3em;
+}

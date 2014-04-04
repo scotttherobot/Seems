@@ -1,3 +1,6 @@
 [submodule "3P/reveal"]
 	path = 3P/reveal
 	url = git@github.com:zurb/reveal.git
+[submodule "3P/webcam"]
+	path = 3P/webcam
+	url = git@github.com:jhuckaby/webcamjs.git
