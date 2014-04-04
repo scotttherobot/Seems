@@ -33,3 +33,14 @@ $app->get('/media/:medid/', function ($medid) {
    $res->respond();
    
 });
+
+$app->get('/media/:medid/img', function ($medid) {
+   $res = new APIResponse(['user']);
+   $media = new MediaManager($res->userid);
+
+   $image = $media->meta($medid);
+
+   header('Content-Type: image/jpeg');
+   readfile("media/" . $image['fname']);
+   die();
+});
