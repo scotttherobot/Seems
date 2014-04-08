@@ -104,6 +104,12 @@ class Page {
       $this->scripts[] = $script;
    }
 
+   public function addTemplateSet($prefix) {
+      $this->addTemplate("$prefix.phtml");
+      $this->addStyle("$prefix.css");
+      $this->addScript("$prefix.js");
+   }
+
    public function render($return = false) {
       // Set the page title
       $title = $this->titlePrefix . (!$this->title ? "" : " - $this->title");

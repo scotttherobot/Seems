@@ -1,0 +1,22 @@
+<div class="container">
+   <div class="row">
+      <header class="content">
+         <h1><?= $gallery->row['title'] ?></h1>
+         <div class="post">
+            <? if ($user) :?>
+            <span><a href="/"><i class="fa fa-pencil"></i></a></span>
+            <? endif ?>
+            <? if ($gallery->row['src']) : ?>
+            <img src="<?= $gallery->row['src'] ?>">
+            <? endif ?>
+         </div>
+      </header>
+      <div class="content">
+         <ul>
+         <? foreach($gallery->entries as $photo): ?>
+            <li><?= $photo['src'] ?>, <?= $photo['caption'] ?></li> 
+         <? endforeach ?>
+         </ul>
+      </div>
+   </div>
+</div>

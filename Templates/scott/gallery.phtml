@@ -1,0 +1,24 @@
+<div class="container">
+   <div class="row">
+      <h1>Galleries</h1>
+      
+      <? foreach($galleries as $gal) : ?>
+      <a href="<?= $gal['id'] ?>">
+         <div class="post">
+            <span><?= $gal['title'] ?></span>
+            <img src="<?= $gal['src'] ?>">
+         </div>
+      </a>
+   <? endforeach ?>
+   </div>
+   <footer class="content">
+      <ul class="meta">
+         <? if ($previousPage) : ?>
+            <li><a href="/blog?p=<?= $previousPage ?>"><i class="fa fa-chevron-left"></i></a></li>
+         <? endif ?>
+         <? if ($nextPage) : ?>
+            <li><a href="/blog?p=<?= $nextPage ?>"><i class="fa fa-chevron-right"></i></a></li>
+         <? endif ?>
+      </ul>
+   </footer>
+</div>
