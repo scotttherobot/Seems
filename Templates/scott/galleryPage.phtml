@@ -4,19 +4,17 @@
          <h1><?= $gallery->row['title'] ?></h1>
          <div class="post">
             <? if ($user) :?>
-            <span><a href="/"><i class="fa fa-pencil"></i></a></span>
+            <span><a id="addImageButton"><i class="fa fa-plus"></i></a></span>
             <? endif ?>
             <? if ($gallery->row['src']) : ?>
             <img src="<?= $gallery->row['src'] ?>">
             <? endif ?>
          </div>
       </header>
-      <div class="content">
-         <ul>
+      <div class="content" id="masonryContainer">
          <? foreach($gallery->entries as $photo): ?>
-            <li><?= $photo['src'] ?>, <?= $photo['caption'] ?></li> 
+            <div class="brick"><img src="<?= $photo['src'] ?>" alt="<?= $photo['caption'] ?>"></div>
          <? endforeach ?>
-         </ul>
       </div>
    </div>
 </div>

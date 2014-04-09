@@ -2,7 +2,7 @@ $(function() {
 
    App.mediaManager = {
       showMediaManager: function (callback) {
-         App.imageSelected = callback;
+         App.mediaManager.imageSelected = callback;
          $("#mediaModal").reveal({
             animation: 'fadeAndPop',
             animationspeed: 300,
@@ -17,7 +17,7 @@ $(function() {
          imageBlock.children("#thumbnail").attr("src", mediaItem.src);
          imageBlock.click(function() {
             $("#mediaModal").trigger("reveal:close");
-            App.imageSelected(mediaItem);
+            App.mediaManager.imageSelected(mediaItem);
          });
          $("#mediaGrid").append(imageBlock);
       },

@@ -21,7 +21,13 @@ $app->get('/galleries/:id', function ($id) use ($app) {
    $page->addTemplateSet("galleryPage");
    $page->enableNav();
 
+   $page->addRemoteScript('/3P/reveal/jquery.reveal.js');
+   $page->addRemoteStyle('/3P/reveal/reveal.css');
+   $page->addTemplateSet("mediaManager");
+
    $gallery = new Gallery($id);
+
+   $page->addJSData(['gallery' => $gallery->getRow()]);
 
    $page->addData([
       'gallery' => $gallery,
