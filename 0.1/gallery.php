@@ -53,10 +53,14 @@ $app->post('/media/galleries/:id/', function ($id) {
  * TODO: SET AND CHECK A COOKIE FOR RATE LIMITING!
  */
 $app->post('/media/selfie/', function() {
-   $res = new APIResponse(['public']);
+   $priv = SettingsLib::get('selfie-wall-enabled') ? ['public'] : ['user'];
+   $res = new APIResponse($priv);
    // Remember to set these setting vaules
    $galleryId = SettingsLib::get('selfie-gallery-id');
    $selfieUser = SettingsLib::get('selfie-user-id');
+   if (!$galleryId || !$selfieUser) {
+      $res->error("No gallery or user set.");
+   }
    // Get a media manager to upload files, and the gallery to add them to
    $media = new MediaManager($selfieUser);
    $gallery = new Gallery($galleryId);
