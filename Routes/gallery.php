@@ -23,7 +23,11 @@ $app->get('/galleries/:id', function ($id) use ($app) {
 
    $page->addRemoteScript('/3P/reveal/jquery.reveal.js');
    $page->addRemoteStyle('/3P/reveal/reveal.css');
-   $page->addTemplateSet("mediaManager");
+
+   // Only add this if the user is logged in.
+   if ($page->user) {
+      $page->addTemplateSet("mediaManager");
+   }
 
    $gallery = new Gallery($id);
 

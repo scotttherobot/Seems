@@ -164,3 +164,9 @@ p {
    background-color: #FF0080; 
    border-color: #FFFFFF; 
 } 
+
+input {
+   width: 200px;
+   line-height: 2.5em;
+   display: block;
+}

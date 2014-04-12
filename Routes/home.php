@@ -35,3 +35,11 @@ $app->post(URI::tag('LOGIN'), function () use ($app) {
       $app->redirect('/');
    }
 });
+
+$app->get(URI::tag('SIGNUP'), function() use ($app) {
+   $per = SettingsLib::get('public-registration') ? ['public'] : ['user'];
+   $page = new Page($app, $per);
+   $page->addTemplateSet("signup");
+   $page->enableNav();
+   $page->render();
+});
