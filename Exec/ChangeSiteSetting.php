@@ -1,6 +1,6 @@
 <?php
 // And our libraries
-include 'Essential.php';
+include __DIR__ . '/Essential.php';
 
 function strip($in) {
    return preg_replace('/\r?\n$/', '', $in);  
