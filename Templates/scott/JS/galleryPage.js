@@ -10,7 +10,7 @@ $(function() {
             $.post('/0.1/media/galleries/' + App.gallery.id,  data, function (response) {
                console.log(response);
                if (response.errors.length) {
-                  alert(response.errors[0]);
+                  alert("Errors: " + response.errors.join(" ")); 
                } else {
                   // Add the element to the collection.
                   // Create an image element

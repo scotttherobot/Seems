@@ -11,7 +11,7 @@ $(function() {
       $.post('/0.1/content/' + App.post.id, data, function (response) {
          console.log(response);
          if (response.errors.length) {
-            alert("Error! " + response.errors[0]);
+            alert("Errors: " + response.errors.join(" ")); 
          } else {
             alert("Success!");
          }
@@ -22,7 +22,7 @@ $(function() {
       $.post('/0.1/content/', data, function (response) {
          console.log(response);
          if (response.errors.length) {
-            alert("Error! " + response.errors[0]);
+            alert("Errors: " + response.errors.join(" ")); 
          } else {
             window.location.href = "/blog/" + response.id;
          }

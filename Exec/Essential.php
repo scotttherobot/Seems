@@ -8,10 +8,10 @@ DB::$dbName = 'scottvanderlinddotcom';
 DB::$host = 'localhost';
 
 // And our libraries
-foreach (glob("../Libs/*.php") as $filename) {
+foreach (glob(__DIR__ . "/../Libs/*.php") as $filename) {
    include $filename;
 }
 // And our objects
-foreach (glob("../Objects/*.php") as $filename) {
+foreach (glob(__DIR__ . "/../Objects/*.php") as $filename) {
    include $filename;
 }

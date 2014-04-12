@@ -35,7 +35,7 @@ $(function() {
             processData: false,
             success: function (response) {
                if (response.errors.length != 0) {
-                  alert(response.errors[0]);
+                  alert("Errors: " + response.errors.join(" ")); 
                } else {
                   $.each(response.uploaded, function (i, mediaItem) {
                      App.mediaManager.injectImage(mediaItem);

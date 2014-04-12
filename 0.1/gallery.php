@@ -46,3 +46,34 @@ $app->post('/media/galleries/:id/', function ($id) {
 
    $res->respond();
 });
+
+/**
+ * A custom endpoint to allow uploading to the sacrificial
+ * selfie gallery.
+ * TODO: SET AND CHECK A COOKIE FOR RATE LIMITING!
+ */
+$app->post('/media/selfie/', function() {
+   $res = new APIResponse(['public']);
+   // Remember to set these setting vaules
+   $galleryId = SettingsLib::get('selfie-gallery-id');
+   $selfieUser = SettingsLib::get('selfie-user-id');
+   // Get a media manager to upload files, and the gallery to add them to
+   $media = new MediaManager($selfieUser);
+   $gallery = new Gallery($galleryId);
+
+   // Now, upload the files
+   if ($uploaded = $media->upload($_FILES)) {
+      $res->addData(['uploaded' => $uploaded]);
+      // Use the IP address of the user as the caption. 
+      $caption = $_SERVER['REMOTE_ADDR'];
+      foreach ($uploaded as $media) {
+         $gallery->addMedia($media['medid'], $caption);
+      }
+      $res->addData(['caption' => $caption]);
+   } else {
+      $res->error("There was a problem while uploading the selfie.");
+   }
+
+   $res->respond();
+
+});
