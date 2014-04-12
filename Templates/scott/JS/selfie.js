@@ -10,6 +10,7 @@ $(function() {
    $("#save").click(function() {
       var data_uri = $("#preview").attr('src');
       Webcam.upload( data_uri, '/0.1/media/selfie/', function (code, response) {
+         var response = $.parseJSON(response);
          if (response.errors.length) {
             alert("Errors: " + response.errors.join(" ")); 
          } else {
