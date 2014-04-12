@@ -10,6 +10,11 @@ class SettingsLib {
       } else {
          $q = "SELECT `value` FROM settings WHERE `name` = %s";
          $val = DB::queryFirstField($q, $name);
+         // If $val is empty, log that it has been queried for but
+         // is unset.
+         if (empty($val)) {
+            Utils::logMe("Setting $name queried but unset.");
+         }
          self::$cache[$name] = $val;   
          return $val;
       }
