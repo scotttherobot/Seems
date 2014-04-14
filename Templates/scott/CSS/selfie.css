@@ -1,8 +1,33 @@
-.camera {
-   width: 800px !important;
-   height: 600px;
-   margin: 0px auto;
-}
 .shutter {
    font-size: 3em;
+}
+.showButton {
+   position: absolute;
+   margin-top: 0px;
+   right: 0px;
+}
+.showButton span {
+   margin-top: 10px;
+   margin-right: 10px;
+   max-width: 200px;
+   font-size: 1.5em;
+   display: block;
+   text-align: right;
+}
+.triangle {
+   position: absolute;
+   right: 0;
+   z-index: -5;
+   width: 0;
+   height: 0;
+   opacity: .5;
+   border-top: 250px solid #555;
+   border-left: 250px solid transparent;
+}
+
+.camera {
+   overflow: hidden;
+   width: 480px;
+   height: 360px;
+   margin: 0px auto;
 }

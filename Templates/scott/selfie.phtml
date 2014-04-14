@@ -1,11 +1,14 @@
-<div class="container">
-   <div class="row">
-      <div class="content centered">
-         <h3>Take a selfie!</h3>
-         <div id="viewfinder" class="camera"></div>
-         <div id="release" class="shutter"><i class="fa fa-camera-retro"></i></div>
-         <div id="save" class="shutter"><i class="fa fa-floppy-o"></i></div>
-         <img id="preview" class="camera">
-      </div>
+<div class="triangle"></div>
+<div class="showButton" id="showWebcam">
+   <span><a href="#">Click to take your own selfie!</a></span>
+</div>
+<div class="reveal-modal centered" id="selfieTaker">
+   <h3>Take a selfie!</h3>
+   <div class="ButtonBar">
+      <a><i id="release" class="fa fa-camera-retro"></i></a>
+      <a><i id="save"class="fa fa-floppy-o"></i></a>
+      <a><i id="clear"class="fa fa-times"></i></a>
    </div>
+   <div class="camera" id="viewfinder"></div>
+   <img class="camera hide" id="preview"></div>
 </div>

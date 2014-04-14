@@ -35,8 +35,6 @@ $app->get('/galleries/:id', function ($id) use ($app) {
 
    $page->addData([
       'gallery' => $gallery,
-      'previousPage' => false,
-      'nextPage' => false
    ]);
 
    $page->render();
