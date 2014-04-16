@@ -20,8 +20,10 @@ class Gallery {
          FROM galleries g
          LEFT JOIN media m
          ON g.leader = m.medid
+         ORDER BY id DESC
          LIMIT %i
          OFFSET %i", $limit, $offset);
+
    }
 
    function __construct($id) {
