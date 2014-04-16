@@ -36,41 +36,25 @@ class MediaManager {
       $beanstalk->disconnect();
    }
 
-   public static function generateMediaVersions($medid) {
-      $response = [
-         'status' => 'failure',
-         'message' => '',
-      ];
-      $media_q = <<<EOT
-SELECT *
-FROM media
-WHERE medid = %i
-EOT;
-      $row = DB::queryFirstRow($media_q, $medid);
-      if (!$row) {
-         $response['message'] = "No such image $medid";
-         return $response;
-      }
-      // Now we do the processing
-      else {
-         $original = $row['fname'];
-
-         $img = Image::make(static::$uploadDir . "/$original");
-
-         //$img->resize(320, 240);
-
-         //$img->save(static::$uploadDir . "/320_240_$original");
-
-         $response['status'] = 'success';
-         return $response;
-      }
-
-   }
-
    function __construct($userid) {
       $this->userid = $userid;
-      $this->adapter = new LocalAdapter(static::$uploadDir);
-      $this->filesystem = new Filesystem($this->adapter);
+      $this->adapter = self::getAdapter();
+      $this->filesystem = self::getFilesystem($this->adapter);
+   }
+
+   // Return the Gaufrette filesystem. If $adapter is false,
+   // fetch the default one.
+   public static function getFilesystem($adapter = false) {
+      if (!$adapter)
+         $adapter = self::getAdapter();
+      return new Filesystem($adapter);
+   }
+   // Return the Gaufrette filesystem adapter.
+   // If $dir is false, use the default.
+   public static function getAdapter($dir = false) {
+      if (!$dir)
+         $dir = static::$uploadDir;
+      return new LocalAdapter($dir);
    }
 
    public function media() {

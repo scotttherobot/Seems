@@ -40,6 +40,7 @@ $app->get('/media/:medid/img', function ($medid) {
 
    $image = $media->meta($medid);
 
+   // TODO; Read from Gaufrette, not from the filesystem.
    header('Content-Type: image/jpeg');
    readfile("media/" . $image['fname']);
    die();
