@@ -3,10 +3,13 @@
 use Gaufrette\Filesystem;
 use Gaufrette\File;
 use Gaufrette\Adapter\Local as LocalAdapter;
+use Intervention\Image\Image;
 
 class MediaManager {
 
    private static $uploadDir = "media";
+   // Turn version generation on or off.
+   private static $generateVersions = true;
    private $adapter;
    private $filesystem;
    public $userid;
@@ -18,6 +21,50 @@ class MediaManager {
          WHERE medid = %i', $medid);
       // TODO: return alt image if there isn't one
       return $src;
+   }
+
+   public static function queueVersionGeneration($medids = []) {
+      $beanstalk = new Socket_Beanstalk();
+      $beanstalk->connect();
+      $beanstalk->choose('media');
+      foreach ($medids as $medid) {
+         $job = [
+            'medid' => $medid,
+         ];
+         $beanstalk->put(23, 0, 500, json_encode($job));
+      }
+      $beanstalk->disconnect();
+   }
+
+   public static function generateMediaVersions($medid) {
+      $response = [
+         'status' => 'failure',
+         'message' => '',
+      ];
+      $media_q = <<<EOT
+SELECT *
+FROM media
+WHERE medid = %i
+EOT;
+      $row = DB::queryFirstRow($media_q, $medid);
+      if (!$row) {
+         $response['message'] = "No such image $medid";
+         return $response;
+      }
+      // Now we do the processing
+      else {
+         $original = $row['fname'];
+
+         $img = Image::make(static::$uploadDir . "/$original");
+
+         //$img->resize(320, 240);
+
+         //$img->save(static::$uploadDir . "/320_240_$original");
+
+         $response['status'] = 'success';
+         return $response;
+      }
+
    }
 
    function __construct($userid) {

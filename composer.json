@@ -4,6 +4,8 @@
       "davidpersson/beanstalk": "*.*",
       "knplabs/gaufrette": "0.1.*",
       "erusev/parsedown": "0.9.4",
-      "sergeytsalkov/meekrodb": "*"
+      "sergeytsalkov/meekrodb": "*",
+      "davidpersson/beanstalk": "*",
+      "intervention/image": "1.*"
    }
 }
