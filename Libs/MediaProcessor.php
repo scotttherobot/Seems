@@ -8,11 +8,17 @@ use Intervention\Image\Image;
 class MediaProcessor {
 
    public static $sizes = [
+      // Friendly, human name
       'medium' => [
+         // The column prefix in the database
+         'col' => 'medium',
+         // The long and short sides
+         // (to allow portrait images)
          'long' => 800,
          'short' => 600,
       ],
-      'thumb' => [
+      'small' => [
+         'col' => 'small',
          'long' => 320,
          'short' => 240,
       ],
@@ -47,11 +53,10 @@ EOT;
          // Determine if it's portrait or landscape
          $portrait = $img->width / $img->height < 1 ? true : false;
          
-         $createAndSave = function($size) use ($img, $portrait, &$created, $original, $fs) {
+         $createAndSave = function($size) use ($img, $portrait, &$created, $original, $fs, $medid) {
             $is = $portrait ? 'is' : 'is not';
             $width = $portrait ? $size['short'] : $size['long'];
             $height = $portrait ? $size['long'] : $size['short'];
-            print("image $is portrait, $width wide x $height high\n");
             // "smart crop" it down to the size it needs to be
             $img->grab($width, $height);
             // Now, get the raw and save it using Gaufrette.
@@ -59,18 +64,29 @@ EOT;
             $newName = "$width-$height-$original";
             // Write it, overwriting it if it's already there. #YOLO
             $fs->write($newName, $newRaw, true);
+            self::updateSizeRecord($medid, $size, $newName);
             $created[] = $newName;
          };
          array_map($createAndSave, self::$sizes);
-         //$img->resize(320, 240);
-         //$img->save(static::$uploadDir . "/320_240_$original");
          $response['status'] = 'success';
          $response['created'] = $created;
          return $response;
       }
    }
 
-   public static function updateSizeRecord($medid, $size, $fname, $src) {
+   public static function updateSizeRecord($medid, $size, $fname) {
+      $column = $size['col'];
+      $src = "/media/$fname";
+      $q_version = <<<EOT
+INSERT INTO media_sizes
+SET medid = %i,
+${column}_fname = %s,
+${column}_src = %s
+ON DUPLICATE KEY UPDATE
+${column}_fname = %s,
+${column}_src = %s
+EOT;
+      DB::query($q_version, $medid, $fname, $src, $fname, $src);
 
    }
 }

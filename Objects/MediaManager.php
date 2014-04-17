@@ -103,7 +103,10 @@ class MediaManager {
          try {
             $fileObj = new File($name, $this->filesystem);
             $fileObj->setContent(file_get_contents($tmpPath));
-            $uploaded[] = $this->newMediaEntry($name, 'IMAGE');
+            $upl = $this->newMediaEntry($name, 'IMAGE');
+            if (self::generateVersions)
+               self::queueVersionGeneration([$upl['medid']]);
+            $uploaded[] = $upl;
          }
          catch (Exception $e) {
             Utils::logMe("Exception!! OH NO!");

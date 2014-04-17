@@ -11,9 +11,9 @@ while (true) {
    $job = json_decode($task['body']);
 
    $medid = $job->medid;
-
-   $response = MediaManager::generateMediaVersions($medid);
-
+   
+   print_r($job);
+   $response = MediaProcessor::generateMediaVersions($medid);
    print_r($response); 
 
    $beanstalk->delete($task['id']);
