@@ -23,7 +23,7 @@ class MediaManager {
       return $src;
    }
 
-   public static function queueVersionGeneration($medids = []) {
+   public static function queueVersionGeneration(array $medids = []) {
       $beanstalk = new Socket_Beanstalk();
       $beanstalk->connect();
       $beanstalk->choose('media');
@@ -59,8 +59,11 @@ class MediaManager {
 
    public function media() {
       return DB::query("
-         SELECT medid, date, type, fname, src
-         FROM media
+         SELECT m.medid, m.date, m.type, m.fname, m.src,
+          ms.small_src, ms.medium_src
+         FROM media m
+         LEFT JOIN media_sizes ms
+         ON m.medid = ms.medid
          WHERE userid = %i", $this->userid);
    }
 

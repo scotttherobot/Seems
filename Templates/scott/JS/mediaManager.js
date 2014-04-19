@@ -14,7 +14,10 @@ $(function() {
          var imageBlock = $("#mediaTemplate").clone();
          imageBlock.attr("id", "medid_" + mediaItem.medid);
          imageBlock.attr("data-medid", mediaItem.medid);
-         imageBlock.children("#thumbnail").attr("src", mediaItem.src);
+         if (mediaItem.small_src)
+            imageBlock.children("#thumbnail").attr("src", mediaItem.small_src);
+         else
+            imageBlock.children("#thumbnail").attr("src", mediaItem.src);
          imageBlock.click(function() {
             $("#mediaModal").trigger("reveal:close");
             App.mediaManager.imageSelected(mediaItem);

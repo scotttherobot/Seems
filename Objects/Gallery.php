@@ -16,10 +16,13 @@ class Gallery {
 
    public static function all($offset = 0, $limit = 10) {
       return DB::query("
-         SELECT g.id, g.title, g.userid, g.leader, m.src
+         SELECT g.id, g.title, g.userid, g.leader, m.src, 
+          ms.small_src, ms.medium_src
          FROM galleries g
          LEFT JOIN media m
          ON g.leader = m.medid
+         LEFT JOIN media_sizes ms
+         ON m.medid = ms.medid
          ORDER BY id DESC
          LIMIT %i
          OFFSET %i", $limit, $offset);
@@ -36,10 +39,12 @@ class Gallery {
       if ($this->row)
          return $this->row;
       $this->row = DB::queryFirstRow("
-         SELECT g.*, m.src
+         SELECT g.*, m.src, ms.small_src, ms.medium_src
          FROM galleries g
          LEFT JOIN media m
          ON g.leader = m.medid
+         LEFT JOIN media_sizes ms
+         ON m.medid = ms.medid
          WHERE id = %i
          AND published = 1", $this->id);
       return $this->row;
@@ -49,10 +54,13 @@ class Gallery {
       if ($this->entries)
          return $this->entries;
       $this->entries = DB::query("
-         SELECT g.medid, g.caption, m.fname, m.src
+         SELECT g.medid, g.caption, m.fname, m.src, 
+          ms.small_src, ms.medium_src
          FROM gallery_entries g
          LEFT JOIN media m
          ON g.medid = m.medid
+         LEFT JOIN media_sizes ms
+         ON m.medid = ms.medid
          WHERE gallery_id = %i", $this->id);
       return $this->entries;
    }
