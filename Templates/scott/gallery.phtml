@@ -6,7 +6,8 @@
       <a href="<?= $gal['id'] ?>">
          <div class="post">
             <span><?= $gal['title'] ?></span>
-            <img src="<?= $gal['src'] ?>">
+            <? $src = $gal['medium_src'] ?: $gal['src'] ?>
+            <img src="<?= $src ?>">
          </div>
       </a>
    <? endforeach ?>

@@ -17,10 +17,13 @@ class Content {
    public static function all ($offset = 0, $limit = 5) {
       return DB::query('
          SELECT c.id, c.date, c.type, c.published,
-          c.title, c.body, m.src as leader, u.username
+          c.title, c.body, m.src as leader, u.username, 
+          ms.medium_src as leader_medium
          FROM content c
          LEFT JOIN media m
          ON m.medid = c.leader
+         LEFT JOIN media_sizes ms
+         ON m.medid = ms.medid
          JOIN users u
          ON u.userid = c.userid
          WHERE published = 1

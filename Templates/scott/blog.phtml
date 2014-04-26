@@ -6,7 +6,8 @@
       <a href="/blog/<?= $post['id'] ?>">
          <div class="post">
             <span><?= $post['title'] ?></span>
-            <img src="<?= $post['leader'] ?>">
+            <? $leader = $post['leader_medium'] ?: $post['leader'] ?>
+            <img src="<?= $leader ?>">
          </div>
       </a>
    <? endforeach ?>
